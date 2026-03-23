@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/project/">
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
     <div class="header_main">
-       <a href="index.html"> <img class="logo" src="images/icons/logoEl.png" alt=""></a>
+       
             <nav class="header_menu">
                 <ul class="nav-menu">
                     <li><a href="index.html">Главная</a></li>
