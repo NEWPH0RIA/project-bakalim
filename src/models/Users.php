@@ -3,7 +3,7 @@
 namespace src\models;
 use src\serveses\DB;
 
-class Users 
+class Users extends ActiveRecordEntity
 {
     protected $nickname;
     protected $email;
@@ -13,12 +13,12 @@ class Users
     protected $auth_token;
     protected $created_at;
 
-    private static function getTableName(): string
+    protected static function getTableName(): string
     {
         return 'users';
     }
 
-    public function getNickName(): string
+    public function getNickname(): string
     {
         return $this->nickname;
     }

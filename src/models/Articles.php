@@ -3,7 +3,7 @@
 namespace src\models;
 use src\serveses\DB;
 
-class Articles 
+class Articles extends ActiveRecordEntity
 {
     
     private $author_id;
@@ -11,7 +11,7 @@ class Articles
     private $text;
     private $created_at;
 
-    private static function getTableName(): string
+    protected static function getTableName(): string
     {
         return 'articles';
     }
@@ -40,6 +40,11 @@ class Articles
     {
         $db = new DB;
         return $db->query('SELECT * FROM `articles`;', [], static::class);
+    }
+
+    public function getAuthor(): Users
+    {
+        return Users::getById($this->author_id);
     }
 }
 

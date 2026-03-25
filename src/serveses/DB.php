@@ -5,7 +5,8 @@ namespace src\serveses;
 class DB
 {
     private $pdo;
-    public function __construct()
+    private static $instance;
+    private function __construct()
     {
         $dbOptions = (require_once __DIR__ . '/../config/settingsDB.php')['db']; // Под вопросом
 
@@ -16,6 +17,15 @@ class DB
         );
 
         $this->pdo->exec('SET NAMES utf8mb4');
+    }
+
+    public static function getInstance()
+    {
+        if(self::$instance === null)
+        {
+            self::$$instance = new self();
+        }
+        return self::$instance;
     }
 
     public function query(string $sql, array $params = [], string $className = 'stdClass'): ?array
