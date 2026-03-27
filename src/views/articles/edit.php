@@ -7,5 +7,6 @@
 
 <form action="" method="POST">
     <label>Название статьи: <input type="text" name="name" value="<?= $article->getName?>"></label><br>
-    <label>Текст статьи: <input type="text" name="name" value="<?= $article->getName?>"></label><br>
+    <label>Текст статьи: <textarea name="name" rows="10" cols="80"> <?= $article->getText() ?> </textarea></label><br>
+    
 </form>

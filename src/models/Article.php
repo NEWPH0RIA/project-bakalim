@@ -1,9 +1,9 @@
 <?php
 
 namespace src\models;
-use src\serveses\DB;
+use src\services\DB;
 
-class Articles extends ActiveRecordEntity
+class Article extends ActiveRecordEntity
 {
     
     private $author_id;
@@ -38,14 +38,21 @@ class Articles extends ActiveRecordEntity
 
     public static function findAll(): array
     {
-        $db = new DB;
+        $db = DB::getInstance();
         return $db->query('SELECT * FROM `articles`;', [], static::class);
     }
 
-    public function getAuthor(): Users
+    public function getAuthor(): User
     {
-        return Users::getById($this->author_id);
+        return User::getById($this->author_id);
     }
+
+    public function updateFromArray(array $fields):Article
+    {
+        $this->name = $fields['name'];
+        $this->text = $fields['text'];
+    }
+
 }
 
 

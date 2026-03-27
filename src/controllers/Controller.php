@@ -2,7 +2,7 @@
 
 namespace src\controllers;
 use src\views\View;
-use src\serveses\DB;
+use src\services\DB;
 
 class Controller
 {

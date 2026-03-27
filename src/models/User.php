@@ -1,9 +1,9 @@
 <?php
 
 namespace src\models;
-use src\serveses\DB;
+use src\services\DB;
 
-class Users extends ActiveRecordEntity
+class User extends ActiveRecordEntity
 {
     protected $nickname;
     protected $email;

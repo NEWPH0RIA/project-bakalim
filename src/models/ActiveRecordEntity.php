@@ -1,7 +1,7 @@
 <?php
 
 namespace src\models;
-use src\serveses\DB;
+use src\services\DB;
 
 
 abstract class ActiveRecordEntity
@@ -14,16 +14,18 @@ abstract class ActiveRecordEntity
 
     public static function findAll(): array
     {
-        $db = new DB::getInstance();
+        $db = DB::getInstance();
         return $db->query('SELECT * FROM `' . static::getTableName() .' `;', [], static::class);
     }
 
     public static function getById($id): ?self
     {
-        $db = new DB::getInstance();
+        $db = DB::getInstance();
         $entities = $db->query("SELECT * FROM `articles` WHERE id = :id; ;", [':id' => $id], static::class);
         return $entities ? $entities[0] : null;
     }
+
+    
 
     abstract protected static function getTableName(): string;
 }

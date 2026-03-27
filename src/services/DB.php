@@ -1,6 +1,6 @@
 <?php
 
-namespace src\serveses;
+namespace src\services;
 
 class DB
 {
@@ -8,7 +8,7 @@ class DB
     private static $instance;
     private function __construct()
     {
-        $dbOptions = (require_once __DIR__ . '/../config/settingsDB.php')['db']; // Под вопросом
+        $dbOptions = (require __DIR__ . '/../config/settingsDB.php')['db']; // Под вопросом
 
         $this->pdo = new \PDO(
             'mysql:host=' . $dbOptions['host'] . ';dbname=' . $dbOptions['dbname'],
@@ -23,7 +23,7 @@ class DB
     {
         if(self::$instance === null)
         {
-            self::$$instance = new self();
+            self::$instance = new self();
         }
         return self::$instance;
     }

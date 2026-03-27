@@ -2,7 +2,7 @@
 
 namespace src\controllers;
 use src\views\View;
-use src\serveses\DB;
+use src\models\Article;
 
 class MainController extends Controller
 {
@@ -16,9 +16,8 @@ class MainController extends Controller
 
     public function main()
     {
-        $db = new DB;
-        $articles = $db->query("SELECT * FROM `articles`;");
-        $this->view->renderHtml('articles/index.php', ['articles' => $articles]);
+
+        $this->view->renderHtml('articles/index.php');
     }
 
     public function sayHello($name)

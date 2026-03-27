@@ -1,21 +1,21 @@
 <?php
 
 namespace src\controllers;
-use src\models\Articles;
+use src\models\Article;
 use src\views\View;
 
 
-class ArticlesController extends Controller
+class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Articles::findAll();
+        $articles = Article::findAll();
         $this->view->renderHtml('articles/index.php', ['articles' => $articles]);
     }
 
     public function view($id)
     {
-        $article = Articles::getById($id);
+        $article = Article::getById($id);
         
         if($article !== null){
 
@@ -28,10 +28,15 @@ class ArticlesController extends Controller
 
     public function edit($id)
     {
-        $article = Articles::getById($id);
+        $article = Article::getById($id);
         if($article === null){
             $this->view->renderHtml('errors/404.php', [], 404);
         }
+
+        if(!empty($_POST)){
+            $article->updateFromArray($_POST);
+        }
+
         $this->view->renderHtml('articles/edit.php', ['article' => $article]);
     }
 }
