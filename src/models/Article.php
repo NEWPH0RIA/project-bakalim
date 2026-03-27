@@ -6,10 +6,10 @@ use src\services\DB;
 class Article extends ActiveRecordEntity
 {
     
-    private $author_id;
-    private $name;
-    private $text;
-    private $created_at;
+    protected $author_id;
+    protected $name;
+    protected $text;
+    protected $created_at;
 
     protected static function getTableName(): string
     {
@@ -52,6 +52,22 @@ class Article extends ActiveRecordEntity
         $this->name = $fields['name'];
         $this->text = $fields['text'];
     }
+
+    public function setName($name)
+    {
+        return $this->name = $name;
+    }
+
+    public function setText($text)
+    {
+        return $this->text = $text;
+    }
+
+    public function setAuthorId($authorId)
+    {
+        return $this->author_id = $authorId;
+    }
+
 
 }
 

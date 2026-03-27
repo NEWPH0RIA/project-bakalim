@@ -22,6 +22,7 @@ class ArticleController extends Controller
             $this->view->renderHtml('articles/view.php', ['article' => $article]);
         }else{
             $this->view->renderHtml('errors/404.php', [], 404);
+            return;
         }
         
     }
@@ -31,6 +32,7 @@ class ArticleController extends Controller
         $article = Article::getById($id);
         if($article === null){
             $this->view->renderHtml('errors/404.php', [], 404);
+            return;
         }
 
         if(!empty($_POST)){
@@ -38,5 +40,28 @@ class ArticleController extends Controller
         }
 
         $this->view->renderHtml('articles/edit.php', ['article' => $article]);
+    }
+
+    public function add()
+    {
+        $article = new Article;
+        $article->setName('Новая статья');
+        $article->setText('Новый текст');
+        $article->setAuthorId(1);
+        $article->save();
+        
+    }
+
+    public function delete($id)
+    {
+        $article = Article::getById($id);
+        if($article === null){
+            $this->view->renderHtml('errors/404.php', [], 404);
+            return;
+        }
+
+        $article->delete();
+        
+
     }
 }

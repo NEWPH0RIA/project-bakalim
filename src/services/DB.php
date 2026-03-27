@@ -39,5 +39,10 @@ class DB
 
         return $sth->fetchAll(\PDO::FETCH_CLASS, $className);
     }
+
+    public function getLastInsertedId(): int
+    {
+        return $this->pdo->lastInsertId();
+    }
 }
 ;
